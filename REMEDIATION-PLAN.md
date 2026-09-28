@@ -3,7 +3,7 @@
 Auditoría de capital-riesgo y seguridad. Este documento convierte los hallazgos en
 trabajo ejecutable, ordenado por dependencia: cada fase deja el repo en un estado
 consistente y verificable, y ninguna fase puede ejecutarse antes de que la anterior
- pase sus tests.
+pase sus tests.
 
 - **Base:** `0244ecea` (main, `HKUDS/Vibe-Trading`)
 - **Alcance:** los 16 defectos de ejecución, 8 sesgos de backtest y 6 problemas de
@@ -188,7 +188,7 @@ Linux y Windows, y un test end-to-end del gate con OKX y Binance en estado fail-
 
 ### 2.2 · Límites no aplicados a órdenes limit
 - [ ] `max_order_notional_usd`, `max_total_exposure_usd` y `max_leverage` deben
-      aplicaмarse a limit orders usando **worst case** (precio favorable), no el
+      aplicarse a limit orders usando **worst case** (precio favorable), no el
       precio de mercado actual.
 - [ ] Una venta limit no worst-caseada puede ejecutarse a múltiplos del notional
       autorizado.
@@ -266,7 +266,7 @@ sin cerrar en OKX. Nada en CI lo detectaría.
       verifica en runtime contra la respuesta del broker, no contra la config.
 
 ### 3.5 · Testnet como smoke test
-- [ ] Un test opt-in,标记 `VIBE_TRADING_TESTNET=1`, contra OKX demo y Binance testnet,
+- [ ] Un test opt-in, marcado `VIBE_TRADING_TESTNET=1`, contra OKX demo y Binance testnet,
       que ejercite idempotencia, rate limit, partial fill y orden rechazada. Es lo
       único que cubre la clase de fallo que mata.
 
@@ -297,7 +297,7 @@ coste. Un Sharpe de este backtest es un techo optimista, no una estimación.
       siempre positiva. Los largos siempre pagan, los cortos siempre reciben. No hay
       régimen.
 - [ ] Fuente de funding real con historical, o al menos un régimen que varíe con el
-      tiempo y pueda ser negativo. Marcar como_LIMITACIÓN si no hay dato.
+      tiempo y pueda ser negativo. Marcar como limitación si no hay dato.
 
 ### 4.3 · Salidas cripto a maker rate
 - [ ] 3bp por pierna, sistemáticamente optimista. Corregir a taker en la salida, o
@@ -397,7 +397,7 @@ limitación conocida en la documentación del backtest. Ninguno silencioso.
 ### 6.2 · Reinicio y reanudación
 - [ ] Ejecutar el backtest, matar el proceso, reanudar. ¿El estado es consistente?
 
-### 6.3 · El benchmark es Alpa-fácil
+### 6.3 · El CI es el punto ciego de Windows
 - [ ] `DESKTOP_WINDOWS` existe. Windows nunca corrió el suite de ledger/live en CI
       (§2.5).
 
@@ -480,7 +480,7 @@ limitación conocida en la documentación del backtest. Ninguno silencioso.
 | 5 | Seguridad | 1 | Exfiltración, RCE, prompt injection |
 | 6 | Ledger / estado | 0 | Corrupción de estado |
 | 7 | CI y tests | todas | Regresión silenciosa |
-| 8 | Documentación | todas | Decisiones sobreDocumentation falsa |
+| 8 | Documentación | todas | Decisiones sobre documentación falsa |
 
 **Fases 4 y 5 no dependen de la 1** y pueden ir en paralelo. La 7 y la 8 cierran.
 
